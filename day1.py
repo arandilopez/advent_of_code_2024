@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from .utils.args import parse_args
+from utils.args import parse_args
 
 
 def main(input):

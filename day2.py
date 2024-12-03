@@ -1,13 +1,13 @@
 import numpy as np
-from .utils.args import parse_args
-from .utils.extract import extract_ints
+from utils.args import parse_args
+from utils.extract import extract_ints
 
 
 def is_safe(report):
     if report != sorted(report) and report != sorted(report, reverse=True):
         return False
 
-    return all(0 < diff < 4 for diff in np.abs(np.diff(report)))
+    return all(1 <= diff <= 3 for diff in np.abs(np.diff(report)))
 
 
 def damping(report):
