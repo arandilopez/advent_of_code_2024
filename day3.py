@@ -2,6 +2,10 @@ import re
 from utils.args import parse_args
 
 
+def parse_instructions(text):
+    return re.findall(r"mul\(\d+,\d+\)", text)
+
+
 def sum_instructions(instructions):
     return sum([a * b for a, b in map(extract_ints, instructions)])
 
@@ -11,19 +15,16 @@ def extract_ints(match):
 
 
 def part1(text):
-    pattern = r"mul\(\d+,\d+\)"
-
-    instructions = re.findall(pattern, text)
+    instructions = parse_instructions(text)
     return sum_instructions(instructions)
 
 
 def part2(text):
-    pattern = r"mul\(\d+,\d+\)"
     re_enable_pattern = r"(don't\(\).*?do\(\)|don't\(\).*)"
 
     enabled = re.sub(re_enable_pattern, "", text)
 
-    instructions = re.findall(pattern, enabled)
+    instructions = parse_instructions(enabled)
     return sum_instructions(instructions)
 
 
