@@ -1,5 +1,6 @@
 import numpy as np
 from .utils.args import parse_args
+from .utils.extract import extract_ints
 
 
 def is_safe(report):
@@ -18,7 +19,7 @@ def main(input):
     damping_results = []
     with open(input, "r") as file:
         for line in file:
-            report = [int(i) for i in line.strip().split(" ")]
+            report = extract_ints(line)
             results.append(is_safe(report))
             damping_results.append(damping(report))
 
